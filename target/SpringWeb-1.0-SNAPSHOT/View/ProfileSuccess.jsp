@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <head>
-
+    <title>Group 12: Profile</title>
 </head>
 
-    <h3>Summary</h3>
+    <h3>Group 12: Profile Summary</h3>
     <h3>${msg}</h3>
 
     <table>
