@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <title>Group 12: Profile</title>
 </head>
 <body>
     <h3>Summary</h3>
     <h3>Group 12: Profile</h3>
 
-    <form id="profileForm" action=""  >
+    <form id="profileForm" action="/profile/${profile1.id}"  >
         <table>
             <tr>
                 <td>ID : </td> <td>  <input type="text" name="id" value=${profile1.id} readonly></td>
@@ -44,15 +44,15 @@
                 <td>About Myself: </td>  <td><input type="text" name="aboutmyself" value=${profile1.aboutmyself}></td>
             </tr>
 
-            <tr><td><input type="submit" value="UPDATE" name="update" onclick="submitForm()" /></td></tr>
-            <tr><td><input type="submit" value="DELETE" name="delete" onclick="deleteForm()" /></td></tr>
+            <tr><td><input type="submit" value="UPDATE" name="update" id="update" /></td></tr>
+            <tr><td><input type="submit" value="DELETE" name="delete" id="delete" /></td></tr>
             <div id="response"></div>
         </table>
     </form>
 
 
     <script>
-        function submitForm() {
+        $('#profileForm #update').submit(function(e){
             var profileForm = document.getElementById("profileForm");
             var action = "/profile/";
             action += profileForm.elements[0].value + "?";
@@ -63,26 +63,35 @@
                     param += ele.name + "=" + ele.value +"&";
                 }
             }
-            var newForm = document.createElement("form");
-            newForm.method = "post";
-            newForm.action = action + param;
-            document.body.appendChild(newForm);
-            newForm.submit();
-        }
-          function deleteForm() {
+
+            $.ajax({
+                type: "POST",
+                url: action + param,
+                success: function (response) {
+                    document.open();
+                    document.write(response);
+                    document.close();
+                }
+            });
+            e.preventDefault();
+
+        })
+        $('#profileForm #delete').submit(function(e){
               var profileForm = document.getElementById("profileForm");
               var action = "/profile/";
               action += profileForm.elements[0].value;
 
-              var xp = new XMLHttpRequest();
-              xp.onreadystatechange = function() {
-                  if(xp.readyState == 4 && xp.status == 200) {
-                      document.write("returned");
+              $.ajax({
+                  type: "DELETE",
+                  url: action,
+                  success: function (response) {
+                      document.open();
+                      document.write(response);
+                      document.close();
                   }
-              }
-              xp.open("DELETE", action, true);
-              xp.send();
-          }
+              });
+            e.preventDefault();
+          })
 
     </script>
 

@@ -27,7 +27,7 @@ public class StudentProfileController {
     @RequestMapping(value="/profile/{id}",method= RequestMethod.GET)
     public ModelAndView getProfileById(@PathVariable("id") Integer id,
                                        @RequestParam(required=false , value = "brief") boolean briefFlag) {
-
+            System.out.println("in get mehtod");
             Profile pfound = profileSvc.get(id);
             if (pfound != null) {
                 if(briefFlag == true) {
@@ -50,7 +50,7 @@ public class StudentProfileController {
     @RequestMapping(value="/profile/{userId}", method= RequestMethod.POST)
     public ModelAndView postProfileById( @PathVariable("userId") Integer id,
                                          @ModelAttribute("profile1") Profile profile1) {
-
+        System.out.println("in post");
         Profile pfound = profileSvc.get(id);
         if (pfound != null) {
             profileSvc.update(profile1);
