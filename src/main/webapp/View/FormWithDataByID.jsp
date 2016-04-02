@@ -52,7 +52,7 @@
 
 
     <script>
-        $('#profileForm #update').submit(function(e){
+        $('#profileForm #update').click(function(e){
             var profileForm = document.getElementById("profileForm");
             var action = "/profile/";
             action += profileForm.elements[0].value + "?";
@@ -76,7 +76,7 @@
             e.preventDefault();
 
         })
-        $('#profileForm #delete').submit(function(e){
+        $('#profileForm #delete').click(function(e){
               var profileForm = document.getElementById("profileForm");
               var action = "/profile/";
               action += profileForm.elements[0].value;

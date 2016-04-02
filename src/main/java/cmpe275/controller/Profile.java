@@ -17,7 +17,6 @@ import javax.persistence.Entity;
 @Table(name = "worker")
 public class Profile {
     @Id
-    //@GeneratedValue
     private int id;
     private String firstname;
     private String lastname;
