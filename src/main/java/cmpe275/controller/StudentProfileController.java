@@ -15,6 +15,7 @@ public class StudentProfileController {
 
     @Autowired private ProfileService profileSvc;
 
+    //Get the profile creation form. Corresponding to (3)
     @RequestMapping(value = "/profile", method= RequestMethod.GET)
     public ModelAndView getProfileTemplate() {
 
@@ -23,7 +24,7 @@ public class StudentProfileController {
          return model;
     }
 
-
+    //Get the user profile. If brief not specified, return (1), else return (2)
     @RequestMapping(value="/profile/{id}",method= RequestMethod.GET)
     public ModelAndView getProfileById(@PathVariable("id") Integer id,
                                        @RequestParam(required=false , value = "brief") boolean briefFlag) {
@@ -46,7 +47,7 @@ public class StudentProfileController {
             }
     }
 
-
+    //Post the profile to databse. Corresponding to (4)
     @RequestMapping(value="/profile/{userId}", method= RequestMethod.POST)
     public ModelAndView postProfileById( @PathVariable("userId") Integer id,
                                          @ModelAttribute("profile1") Profile profile1) {
@@ -65,7 +66,7 @@ public class StudentProfileController {
 
 
 
-
+    //Delete the profile, corresponding to (5)
     @RequestMapping(value="/profile/{userId}", method= RequestMethod.DELETE)
     public ModelAndView deleteProfile(@PathVariable("userId") Integer id) {
         Profile pfound = profileSvc.get(id);
