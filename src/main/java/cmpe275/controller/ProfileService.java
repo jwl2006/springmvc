@@ -22,7 +22,7 @@ public class ProfileService {
     }
 
     @Transactional
-    public Profile get(Integer id) {
+    public Profile get(String id) {
         Profile p1 = null;
         p1 = (Profile)em.find(Profile.class,id);
         return p1;
@@ -38,7 +38,7 @@ public class ProfileService {
     }
 
     @Transactional
-    public void delete(Integer id) {
+    public void delete(String id) {
         Profile p1 = (Profile)em.find(Profile.class,id);
         em.remove(p1);
     }

@@ -26,7 +26,7 @@ public class StudentProfileController {
 
     //Get the user profile. If brief not specified, return (1), else return (2)
     @RequestMapping(value="/profile/{id}",method= RequestMethod.GET)
-    public ModelAndView getProfileById(@PathVariable("id") Integer id,
+    public ModelAndView getProfileById(@PathVariable("id") String id,
                                        @RequestParam(required=false , value = "brief") boolean briefFlag) {
 
             Profile pfound = profileSvc.get(id);
@@ -49,8 +49,10 @@ public class StudentProfileController {
 
     //Post the profile to databse. Corresponding to (4)
     @RequestMapping(value="/profile/{userId}", method= RequestMethod.POST)
-    public ModelAndView postProfileById( @PathVariable("userId") Integer id,
+    public ModelAndView postProfileById( @PathVariable("userId") String id,
                                          @ModelAttribute("profile1") Profile profile1) {
+
+        profile1.setId(id);
 
         Profile pfound = profileSvc.get(id);
         if (pfound != null) {
@@ -59,6 +61,7 @@ public class StudentProfileController {
             profileSvc.add(profile1);
         }
         ModelAndView model = new ModelAndView("View/FormWithDataByID");
+
         model.addObject("profile1", profile1);
         return model;
     }
@@ -68,7 +71,7 @@ public class StudentProfileController {
 
     //Delete the profile, corresponding to (5)
     @RequestMapping(value="/profile/{userId}", method= RequestMethod.DELETE)
-    public ModelAndView deleteProfile(@PathVariable("userId") Integer id) {
+    public ModelAndView deleteProfile(@PathVariable("userId") String id) {
         Profile pfound = profileSvc.get(id);
         if (pfound != null) {
             profileSvc.delete(id);

@@ -47,7 +47,7 @@
 
         <tr>
             <td>About Myself: </td>
-            <td>${profile1.aboutmyself}</td>
+            <td>${profile1.aboutMyself}</td>
         </tr>
 
         <tr>

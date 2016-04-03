@@ -3,11 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-import javax.persistence.GeneratedValue;
-
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 
 /**
@@ -17,20 +13,33 @@ import javax.persistence.Entity;
 @Table(name = "worker")
 public class Profile {
     @Id
-    private int id;
-    private String firstname;
-    private String lastname;
+    private String id;
+    private String firstname ;
+    private String lastname ;
     private String email;
     private String address;
     private String organization;
-    private String aboutmyself;
+    @Column(name = "aboutmyself")
+    private String aboutMyself;
 
+    public Profile() {
+    }
 
-    public int getId() {
+    public Profile(String id, String firstname, String lastname, String email, String address, String organization, String aboutMyself) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.address = address;
+        this.organization = organization;
+        this.aboutMyself = aboutMyself;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -76,12 +85,13 @@ public class Profile {
         this.organization = organization;
     }
 
-    public String getAboutmyself() {
-        return aboutmyself;
+    public String getAboutMyself() {
+        return aboutMyself;
     }
 
-    public void setAboutmyself(String aboutmyself) {
-        this.aboutmyself = aboutmyself;
+    public void setAboutMyself(String aboutMyself) {
+        this.aboutMyself = aboutMyself;
     }
+
 
 }

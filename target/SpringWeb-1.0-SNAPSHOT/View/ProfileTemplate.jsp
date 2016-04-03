@@ -36,7 +36,7 @@
         </tr>
 
         <tr>
-            <td>About Myself: </td>  <td><input type="text" name="aboutmyself"></td>
+            <td>About Myself: </td>  <td><input type="text" name="aboutMyself"></td>
         </tr>
 
         <tr><td><input type="submit" value="CREATE" /></td></tr>
@@ -51,7 +51,7 @@
         var action = "/profile/";
         action += profileForm.elements[0].value + "?";
         var param="";
-        for( var i = 0; i < profileForm.length; i++) {
+        for( var i = 1; i < profileForm.length; i++) {
             var ele = profileForm.elements[i];
             if(ele.type == "text") {
                 param += ele.name + "=" + ele.value +"&";
@@ -68,6 +68,7 @@
                 document.close();
             }
         });
+
         e.preventDefault();
     })
 
