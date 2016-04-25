@@ -9,34 +9,34 @@
 <h3>Group 12: User Profile</h3>
 
 
-<form id="createForm" action="">
+<form id="createForm" action="/addMenuItem" method = "post">
     <table>
         <tr>
-            <td>ID : </td> <td>    <input type="text" name="id" ></td>
+            <td>calorie_count:</td> <td>    <input type="text" name="calorie_count" ></td>
         </tr>
 
         <tr>
-            <td>First Name : </td> <td>    <input type="text" name="firstname"  ></td>
+            <td>category:</td> <td>    <input type="text" name="category"  ></td>
         </tr>
 
         <tr>
-            <td>Last Name: </td> <td>    <input type="text" name="lastname" ></td>
+            <td>image_path </td> <td>    <input type="text" name="image_path" ></td>
         </tr>
 
         <tr>
-            <td>Email: </td> <td><input type="text" name="email"></td>
+            <td>is deleted</td> <td><input type="text" name="is_deleted"></td>
         </tr>
 
         <tr>
-            <td>Address: </td>  <td><input type="text" name="address" ></td>
+            <td>name: </td>  <td><input type="text" name="name" ></td>
         </tr>
 
         <tr>
-            <td>Organization: </td>  <td><input type="text" name="organization" ></td>
+            <td>prep_time</td>  <td><input type="text" name="prep_time" ></td>
         </tr>
 
         <tr>
-            <td>About Myself: </td>  <td><input type="text" name="aboutMyself"></td>
+            <td>unit_price </td>  <td><input type="text" name="unit_price"></td>
         </tr>
 
         <tr><td><input type="submit" value="CREATE" /></td></tr>
@@ -45,32 +45,7 @@
 
 </form>
 <script>
-    $('#createForm').submit(function(e){
 
-        var profileForm = document.getElementById("createForm");
-        var action = "/profile/";
-        action += profileForm.elements[0].value + "?";
-        var param="";
-        for( var i = 1; i < profileForm.length; i++) {
-            var ele = profileForm.elements[i];
-            if(ele.type == "text") {
-                param += ele.name + "=" + ele.value +"&";
-            }
-        }
-
-        $.ajax({
-            type:"POST",
-            url: action+param,
-            success:function(response) {
-
-                document.open();
-                document.write(response);
-                document.close();
-            }
-        });
-
-        e.preventDefault();
-    })
 
 </script>
 </body>
